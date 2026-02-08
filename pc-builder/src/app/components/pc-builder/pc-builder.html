@@ -1,0 +1,244 @@
+<app-header></app-header>
+
+<!-- PC Builder Page -->
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 mix-blend-multiply filter blur-xl animate-pulse"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-cyan-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+  </div>
+
+  <div class="relative z-10 flex">
+    <!-- Sidebar -->
+    <div class="w-80 bg-slate-800/80 backdrop-blur-sm border-r border-gray-700 flex flex-col">
+      <!-- Search & Filter -->
+      <div class="p-6 border-b border-gray-700">
+        <h2 class="text-xl font-bold text-white mb-4">Components</h2>
+        
+        <!-- Search Bar -->
+        <div class="mb-4">
+          <input 
+            pInputText
+            type="text" 
+            placeholder="Search components..." 
+            [(ngModel)]="searchTerm"
+            class="w-full"
+          >
+        </div>
+        
+        <!-- Category Filter -->
+        <p-select 
+          [(ngModel)]="selectedCategory"
+          [options]="categoryOptions"
+          placeholder="All Categories"
+          class="w-full">
+        </p-select>
+      </div>
+
+      <!-- Components List -->
+      <p-scrollPanel [style]="{'width': '100%', 'height': 'calc(100vh - 200px)'}">
+        <div class="p-4 space-y-2">
+          <div *ngFor="let category of categories">
+            <p-card *ngFor="let component of category.components" class="mb-2">
+              <div class="p-3 hover:bg-slate-700/30 cursor-pointer transition-colors">
+                <div class="flex items-center">
+                  <div class="w-12 h-12 bg-slate-600 mr-3 flex items-center justify-center rounded">
+                    <span class="text-lg">{{ category.icon }}</span>
+                  </div>
+                  <div class="flex-1">
+                    <p class="font-medium text-white text-sm">{{ component }}</p>
+                    <p class="text-xs text-gray-400">{{ category.name }} • $299.99</p>
+                  </div>
+                </div>
+              </div>
+            </p-card>
+          </div>
+        </div>
+      </p-scrollPanel>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Top Bar -->
+      <div class="bg-slate-800/80 backdrop-blur-sm border-b border-gray-700 p-6">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
+              <input 
+                pInputText
+                type="text" 
+                placeholder="Build name..."
+                [(ngModel)]="buildName"
+                value="Untitled-Pc-Build"
+                class="bg-slate-700/50 border border-gray-600 text-white placeholder-gray-400 px-3 py-2 rounded text-sm w-48"
+              >
+              <p-button 
+                icon="pi pi-pencil" 
+                severity="secondary"
+                size="small"
+                [text]="true">
+              </p-button>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <p-button 
+              label="Save Build" 
+              severity="secondary">
+            </p-button>
+            <p-button 
+              label="Complete Build">
+            </p-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PC Skeleton Layout -->
+      <div class="flex-1 p-6">
+        <div class="max-w-6xl mx-auto">
+          <!-- Monitor -->
+          <div class="text-center mb-8">
+            <div class="inline-block bg-slate-800/60 backdrop-blur-sm border-2 border-dashed border-gray-600 p-8 hover:border-cyan-500 transition-colors cursor-pointer">
+              <div class="w-64 h-40 bg-slate-700/50 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-4xl mb-2">🖥️</div>
+                  <p class="text-gray-300 font-medium">Monitor</p>
+                  <p class="text-xs text-gray-500">Click to add</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PC Case & Components -->
+          <div class="grid grid-cols-3 gap-8 mb-8">
+            <!-- Left Side - Peripherals -->
+            <div class="space-y-6">
+              <!-- Keyboard -->
+              <div class="bg-slate-800/60 backdrop-blur-sm border-2 border-dashed border-gray-600 p-6 hover:border-cyan-500 transition-colors cursor-pointer">
+                <div class="text-center">
+                  <div class="text-3xl mb-2">⌨️</div>
+                  <p class="text-gray-300 font-medium">Keyboard</p>
+                  <p class="text-xs text-gray-500">Click to add</p>
+                </div>
+              </div>
+              
+              <!-- Mouse -->
+              <div class="bg-slate-800/60 backdrop-blur-sm border-2 border-dashed border-gray-600 p-6 hover:border-cyan-500 transition-colors cursor-pointer">
+                <div class="text-center">
+                  <div class="text-3xl mb-2">🖱️</div>
+                  <p class="text-gray-300 font-medium">Mouse</p>
+                  <p class="text-xs text-gray-500">Click to add</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center - PC Case -->
+            <div class="bg-slate-800/60 backdrop-blur-sm border-2 border-dashed border-gray-600 p-8">
+              <div class="text-center mb-6">
+                <div class="text-4xl mb-2">🖥️</div>
+                <p class="text-gray-300 font-medium">PC Case</p>
+              </div>
+              
+              <!-- Internal Components Grid -->
+              <div class="grid grid-cols-2 gap-4">
+                <!-- CPU -->
+                <div class="bg-slate-700/50 border border-gray-600 p-4 hover:bg-slate-600/50 transition-colors cursor-pointer">
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">⚡</div>
+                    <p class="text-xs font-medium text-gray-300">CPU</p>
+                  </div>
+                </div>
+                
+                <!-- GPU -->
+                <div class="bg-slate-700/50 border border-gray-600 p-4 hover:bg-slate-600/50 transition-colors cursor-pointer">
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">🎮</div>
+                    <p class="text-xs font-medium text-gray-300">GPU</p>
+                  </div>
+                </div>
+                
+                <!-- RAM -->
+                <div class="bg-slate-700/50 border border-gray-600 p-4 hover:bg-slate-600/50 transition-colors cursor-pointer">
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">💾</div>
+                    <p class="text-xs font-medium text-gray-300">RAM</p>
+                  </div>
+                </div>
+                
+                <!-- Storage -->
+                <div class="bg-slate-700/50 border border-gray-600 p-4 hover:bg-slate-600/50 transition-colors cursor-pointer">
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">💿</div>
+                    <p class="text-xs font-medium text-gray-300">Storage</p>
+                  </div>
+                </div>
+                
+                <!-- Motherboard -->
+                <div class="bg-slate-700/50 border border-gray-600 p-4 hover:bg-slate-600/50 transition-colors cursor-pointer col-span-2">
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">🔧</div>
+                    <p class="text-xs font-medium text-gray-300">Motherboard</p>
+                  </div>
+                </div>
+                
+                <!-- PSU -->
+                <div class="bg-slate-700/50 border border-gray-600 p-4 hover:bg-slate-600/50 transition-colors cursor-pointer">
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">🔋</div>
+                    <p class="text-xs font-medium text-gray-300">PSU</p>
+                  </div>
+                </div>
+                
+                <!-- Cooling -->
+                <div class="bg-slate-700/50 border border-gray-600 p-4 hover:bg-slate-600/50 transition-colors cursor-pointer">
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">❄️</div>
+                    <p class="text-xs font-medium text-gray-300">Cooling</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side - Speakers -->
+            <div class="space-y-6">
+              <!-- Speakers -->
+              <div class="bg-slate-800/60 backdrop-blur-sm border-2 border-dashed border-gray-600 p-6 hover:border-cyan-500 transition-colors cursor-pointer">
+                <div class="text-center">
+                  <div class="text-3xl mb-2">🔊</div>
+                  <p class="text-gray-300 font-medium">Speakers</p>
+                  <p class="text-xs text-gray-500">Click to add</p>
+                </div>
+              </div>
+              
+              <!-- Headset -->
+              <div class="bg-slate-800/60 backdrop-blur-sm border-2 border-dashed border-gray-600 p-6 hover:border-cyan-500 transition-colors cursor-pointer">
+                <div class="text-center">
+                  <div class="text-3xl mb-2">🎧</div>
+                  <p class="text-gray-300 font-medium">Headset</p>
+                  <p class="text-xs text-gray-500">Click to add</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Build Summary -->
+          <div class="bg-slate-800/60 backdrop-blur-sm border border-gray-700 p-6">
+            <h3 class="text-lg font-bold text-white mb-4">Build Summary</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-gray-300">Total Components: <span class="font-semibold text-white">0/8</span></p>
+                <p class="text-gray-300">Compatibility: <span class="text-green-400 font-semibold">✓ Compatible</span></p>
+              </div>
+              <div class="text-right">
+                <p class="text-2xl font-bold text-white">$0.00</p>
+                <p class="text-sm text-gray-400">Total Price</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

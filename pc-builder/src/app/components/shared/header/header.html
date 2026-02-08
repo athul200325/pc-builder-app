@@ -1,0 +1,31 @@
+<nav class="bg-gradient-to-r from-slate-900 to-gray-900 shadow-xl border-b border-gray-700">
+  <div class="px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <img src="assets/images/dreambuild-logo.png" alt="PC Builder Logo" class="w-8 h-8">
+        <span class="text-white text-xl font-bold">Builder</span>
+      </div>
+      <div class="flex font-semibold items-center space-x-6">
+        <a [routerLink]="['']" class="text-gray-300 hover:text-white transition-colors cursor-pointer" style="pointer-events: auto; z-index: 1000;">Home</a>
+        <a [routerLink]="['/pc-builder']" class="text-gray-300 hover:text-white transition-colors cursor-pointer" style="pointer-events: auto; z-index: 1000;">Build PC</a>
+        <a [routerLink]="['/components-list']" class="text-gray-300 hover:text-white transition-colors cursor-pointer" style="pointer-events: auto; z-index: 1000;">Components</a>
+        <a [routerLink]="['/prebuild-pcs']" class="text-gray-300 hover:text-white transition-colors cursor-pointer" style="pointer-events: auto; z-index: 1000;">Prebuild PC</a>
+        
+        <p-button 
+          icon="pi pi-shopping-cart"
+          [badge]="cartItemCount.toString()"
+          badgeClass="p-badge-danger"
+          severity="secondary"
+          outlined="true"
+          (onClick)="navigateToCart()"
+          [style]="{'pointer-events': 'auto', 'z-index': '1000'}"
+          styleClass="relative">
+        </p-button>
+        
+        <button (click)="navigateToLogin()" class="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-2 hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 rounded cursor-pointer" style="pointer-events: auto; z-index: 1000;">
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

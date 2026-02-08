@@ -1,0 +1,163 @@
+<app-header></app-header>
+
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 mix-blend-multiply filter blur-xl animate-pulse"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-cyan-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+  </div>
+
+  <div class="relative z-10 p-8">
+    <!-- Profile Header -->
+    <div class="bg-slate-800/60 backdrop-blur-sm border border-gray-700 rounded-lg p-6 mb-8">
+      <div class="flex items-center gap-6">
+        <p-avatar 
+          image="https://via.placeholder.com/100" 
+          size="xlarge" 
+          shape="circle">
+        </p-avatar>
+        <div>
+          <h1 class="text-3xl font-bold text-white mb-2">{{ userProfile.name }}</h1>
+          <p class="text-gray-300 mb-2">{{ userProfile.email }}</p>
+          <p-tag value="Premium Member" severity="success"></p-tag>
+        </div>
+        <div class="ml-auto">
+          <p-button label="Edit Profile" icon="pi pi-pencil" severity="secondary"></p-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Profile Information -->
+      <div class="lg:col-span-1">
+        <p-card header="Profile Information">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
+              <input pInputText [value]="userProfile.name" readonly class="w-full">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+              <input pInputText [value]="userProfile.email" readonly class="w-full">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+              <input pInputText [value]="userProfile.phone" readonly class="w-full">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-1">Member Since</label>
+              <input pInputText [value]="userProfile.memberSince" readonly class="w-full">
+            </div>
+          </div>
+        </p-card>
+
+        <!-- Order Statistics -->
+        <p-card header="Order Statistics" class="mt-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-cyan-400">{{ userProfile.totalOrders }}</div>
+              <div class="text-sm text-gray-400">Total Orders</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-400">${{ userProfile.totalSpent }}</div>
+              <div class="text-sm text-gray-400">Total Spent</div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+
+      <!-- PC Builds & Orders -->
+      <div class="lg:col-span-2">
+        <!-- PC Builds Section -->
+        <p-card header="My PC Builds">
+          <!-- Active Builds Tab Content -->
+          <div class="relative">
+            <!-- Navigation Arrows -->
+            <button 
+              (click)="scrollBuilds('left')"
+              class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-slate-800/80 hover:bg-slate-700 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110">
+              <i class="pi pi-chevron-left"></i>
+            </button>
+            <button 
+              (click)="scrollBuilds('right')"
+              class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-slate-800/80 hover:bg-slate-700 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110">
+              <i class="pi pi-chevron-right"></i>
+            </button>
+            
+            <!-- Scrollable Container -->
+            <div class="builds-scroll-container overflow-x-auto scrollbar-hide px-8">
+              <div class="flex gap-4 pb-4" style="width: max-content;">
+                <div *ngFor="let build of userProfile.pcBuilds" 
+                     class="bg-slate-700/50 border border-gray-600 rounded-lg p-4 flex-shrink-0 w-80">
+                  <div class="flex justify-between items-start mb-3">
+                    <h3 class="font-semibold text-white">{{ build.name }}</h3>
+                    <p-tag [value]="build.status" 
+                           [severity]="build.status === 'Complete' ? 'success' : build.status === 'In Progress' ? 'warn' : 'secondary'">
+                    </p-tag>
+                  </div>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">CPU:</span>
+                      <span class="text-white">{{ build.components.cpu }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">GPU:</span>
+                      <span class="text-white">{{ build.components.gpu }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">RAM:</span>
+                      <span class="text-white">{{ build.components.ram }}</span>
+                    </div>
+                    <div class="flex justify-between font-semibold pt-2 border-t border-gray-600">
+                      <span class="text-gray-300">Total:</span>
+                      <span class="text-cyan-400">${{ build.totalPrice }}</span>
+                    </div>
+                  </div>
+                  <div class="flex justify-between mt-4 items-center w-full">
+                      <p-button label="Edit" size="small"></p-button>
+                    <p-button label="Add to Cart" size="small" severity="info" class="flex-1"></p-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </p-card>
+
+        <!-- Recent Orders -->
+        <p-card header="Recent Orders" class="mt-6">
+          <p-table [value]="userProfile.recentOrders" [paginator]="true" [rows]="5">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order>
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.items }}</td>
+                <td>${{ order.total }}</td>
+                <td>
+                  <p-tag [value]="order.status" 
+                         [severity]="getOrderStatusSeverity(order.status)">
+                  </p-tag>
+                </td>
+                <td>
+                  <p-button icon="pi pi-eye" size="small" severity="secondary"></p-button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

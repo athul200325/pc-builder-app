@@ -1,0 +1,54 @@
+<!-- Layout Container -->
+<div class="min-h-screen bg-slate-50">
+  <!-- Enhanced Header with Sidebar Toggle -->
+  <header *ngIf="showHeader" class="fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-slate-900 to-gray-900 shadow-xl border-b border-gray-700">
+    <div class="flex items-center justify-between px-6 py-4">
+      <!-- Left Section with Menu Toggle -->
+      <div class="flex items-center space-x-4">
+        <button 
+          (click)="toggleSidebar()"
+          class="text-gray-300 hover:text-white transition-colors p-2 rounded-lg hover:bg-gray-800/50"
+          [class.lg:hidden]="!isMobile"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        
+        <div class="flex items-center space-x-2">
+          <img src="assets/images/dreambuild-logo.png" alt="PC Builder Logo" class="w-8 h-8">
+          <span class="text-white text-xl font-bold">Builder</span>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="flex items-center space-x-6">
+        <div class="hidden md:flex font-semibold items-center space-x-6">
+          <a routerLink="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+          <a routerLink="/components" class="text-gray-300 hover:text-white transition-colors">Components</a>
+          <a routerLink="/prebuild" class="text-gray-300 hover:text-white transition-colors">Prebuild PC</a>
+        </div>
+        <button 
+          routerLink="/login" 
+          class="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <app-sidebar *ngIf="showSidebar" [isOpen]="isSidebarOpen"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main 
+    class="transition-all duration-300 ease-in-out"
+    [class.pt-20]="showHeader"
+    [class.lg:ml-72]="isSidebarOpen && !isMobile && showSidebar"
+    [class.ml-0]="!isSidebarOpen || isMobile || !showSidebar"
+    (click)="closeSidebar()"
+  >
+    <router-outlet></router-outlet>
+  </main>
+</div>

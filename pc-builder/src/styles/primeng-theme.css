@@ -1,0 +1,412 @@
+/* PrimeNG Dark Theme Customization for PC Builder */
+/* Based on the existing pc-builder component styling */
+
+/* Global PrimeNG Overrides */
+:root {
+  --p-primary-50: rgb(236 254 255);
+  --p-primary-100: rgb(207 250 254);
+  --p-primary-200: rgb(165 243 252);
+  --p-primary-300: rgb(103 232 249);
+  --p-primary-400: rgb(34 211 238);
+  --p-primary-500: rgb(6 182 212);
+  --p-primary-600: rgb(8 145 178);
+  --p-primary-700: rgb(14 116 144);
+  --p-primary-800: rgb(21 94 117);
+  --p-primary-900: rgb(22 78 99);
+  --p-primary-950: rgb(8 51 68);
+}
+
+/* Input Components */
+::ng-deep .p-inputtext {
+  background: rgb(51 65 85) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  color: white !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+::ng-deep .p-inputtext::placeholder {
+  color: rgb(156 163 175) !important;
+}
+
+::ng-deep .p-inputtext:focus {
+  border-color: rgb(6 182 212) !important;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2) !important;
+  outline: none !important;
+}
+
+::ng-deep .p-inputtext:hover:not(:focus) {
+  border-color: rgb(107 114 128) !important;
+}
+
+/* Select/Dropdown Components */
+::ng-deep .p-select {
+  background: rgb(51 65 85) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  color: white !important;
+  border-radius: 0.5rem !important;
+  min-height: 3rem !important;
+}
+
+::ng-deep .p-select:not(.p-disabled):hover {
+  border-color: rgb(6 182 212) !important;
+}
+
+::ng-deep .p-select:not(.p-disabled).p-focus {
+  border-color: rgb(6 182 212) !important;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2) !important;
+}
+
+::ng-deep .p-select-overlay {
+  background: rgb(51 65 85) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+}
+
+::ng-deep .p-select-option {
+  color: white !important;
+  padding: 0.75rem 1rem !important;
+}
+
+::ng-deep .p-select-option:hover {
+  background: rgba(71, 85, 105, 0.7) !important;
+}
+
+::ng-deep .p-select-option.p-select-option-selected {
+  background: rgba(6, 182, 212, 0.2) !important;
+  color: rgb(6 182 212) !important;
+}
+
+/* Button Components */
+::ng-deep .p-button {
+  background: linear-gradient(to right, rgb(6 182 212), rgb(147 51 234)) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+::ng-deep .p-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 10px 15px -3px rgba(147, 51, 234, 0.25) !important;
+}
+
+::ng-deep .p-button.p-button-secondary {
+  background: rgb(51 65 85) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  color: white !important;
+}
+
+::ng-deep .p-button.p-button-secondary:hover {
+  background: rgb(71 85 105) !important;
+  border-color: rgb(107 114 128) !important;
+}
+
+::ng-deep .p-button.p-button-outlined {
+  background: transparent !important;
+  border: 2px solid rgb(6 182 212) !important;
+  color: rgb(6 182 212) !important;
+}
+
+::ng-deep .p-button.p-button-outlined:hover {
+  background: rgba(6, 182, 212, 0.1) !important;
+}
+
+/* Card Components */
+::ng-deep .p-card {
+  background: rgba(30, 41, 59, 0.6) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  color: white !important;
+  border-radius: 0.75rem !important;
+  backdrop-filter: blur(8px) !important;
+  transition: all 0.2s ease !important;
+}
+
+::ng-deep .p-card:hover {
+  border-color: rgba(6, 182, 212, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
+}
+
+::ng-deep .p-card .p-card-header {
+  background: rgba(51, 65, 85, 0.5) !important;
+  border-bottom: 1px solid rgb(75 85 99) !important;
+  padding: 1rem 1.5rem !important;
+}
+
+::ng-deep .p-card .p-card-body {
+  padding: 1.5rem !important;
+}
+
+::ng-deep .p-card .p-card-title {
+  color: white !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+::ng-deep .p-card .p-card-subtitle {
+  color: rgb(156 163 175) !important;
+}
+
+/* ScrollPanel Components */
+::ng-deep .p-scrollpanel .p-scrollpanel-wrapper {
+  border-right: none !important;
+}
+
+::ng-deep .p-scrollpanel .p-scrollpanel-bar {
+  background: rgba(148, 163, 184, 0.5) !important;
+  width: 6px !important;
+  border-radius: 3px !important;
+}
+
+::ng-deep .p-scrollpanel .p-scrollpanel-bar:hover {
+  background: rgba(148, 163, 184, 0.7) !important;
+}
+
+/* Dialog Components */
+::ng-deep .p-dialog {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.75rem !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+::ng-deep .p-dialog .p-dialog-header {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-bottom: 1px solid rgb(75 85 99) !important;
+  color: white !important;
+  padding: 1.5rem !important;
+}
+
+::ng-deep .p-dialog .p-dialog-content {
+  background: transparent !important;
+  color: white !important;
+  padding: 1.5rem !important;
+}
+
+/* Toast Components */
+::ng-deep .p-toast .p-toast-message {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+  border-left: 4px solid rgb(34 197 94) !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+  border-left: 4px solid rgb(239 68 68) !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-warn {
+  border-left: 4px solid rgb(245 158 11) !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-info {
+  border-left: 4px solid rgb(6 182 212) !important;
+}
+
+/* Table Components */
+::ng-deep .p-datatable {
+  background: rgba(30, 41, 59, 0.6) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+}
+
+::ng-deep .p-datatable .p-datatable-header {
+  background: rgba(51, 65, 85, 0.8) !important;
+  border-bottom: 1px solid rgb(75 85 99) !important;
+  color: white !important;
+  padding: 1rem 1.5rem !important;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background: rgba(51, 65, 85, 0.6) !important;
+  border-bottom: 1px solid rgb(75 85 99) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 1rem !important;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr {
+  background: transparent !important;
+  color: white !important;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3) !important;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background: rgba(71, 85, 105, 0.3) !important;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 1rem !important;
+  border: none !important;
+}
+
+/* Menu Components */
+::ng-deep .p-menu {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+::ng-deep .p-menu .p-menuitem-link {
+  color: white !important;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+::ng-deep .p-menu .p-menuitem-link:hover {
+  background: rgba(71, 85, 105, 0.5) !important;
+}
+
+/* Progress Components */
+::ng-deep .p-progressbar {
+  background: rgba(51, 65, 85, 0.6) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+}
+
+::ng-deep .p-progressbar .p-progressbar-value {
+  background: linear-gradient(to right, rgb(6 182 212), rgb(147 51 234)) !important;
+}
+
+/* Checkbox Components */
+::ng-deep .p-checkbox .p-checkbox-box {
+  background: rgb(51 65 85) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.25rem !important;
+}
+
+::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
+  background: rgb(6 182 212) !important;
+  border-color: rgb(6 182 212) !important;
+}
+
+/* Radio Button Components */
+::ng-deep .p-radiobutton .p-radiobutton-box {
+  background: rgb(51 65 85) !important;
+  border: 1px solid rgb(75 85 99) !important;
+}
+
+::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+  background: rgb(6 182 212) !important;
+  border-color: rgb(6 182 212) !important;
+}
+
+/* Slider Components */
+::ng-deep .p-slider {
+  background: rgba(51, 65, 85, 0.6) !important;
+}
+
+::ng-deep .p-slider .p-slider-range {
+  background: linear-gradient(to right, rgb(6 182 212), rgb(147 51 234)) !important;
+}
+
+::ng-deep .p-slider .p-slider-handle {
+  background: white !important;
+  border: 2px solid rgb(6 182 212) !important;
+}
+
+/* Accordion Components */
+::ng-deep .p-accordion .p-accordion-tab {
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  overflow: hidden !important;
+}
+
+::ng-deep .p-accordion .p-accordion-header-link {
+  background: rgba(51, 65, 85, 0.6) !important;
+  color: white !important;
+  padding: 1rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+::ng-deep .p-accordion .p-accordion-header-link:hover {
+  background: rgba(71, 85, 105, 0.6) !important;
+}
+
+::ng-deep .p-accordion .p-accordion-content {
+  background: rgba(30, 41, 59, 0.4) !important;
+  color: white !important;
+  padding: 1.5rem !important;
+}
+
+/* Tabs Components */
+::ng-deep .p-tabview .p-tabview-nav {
+  background: rgba(51, 65, 85, 0.6) !important;
+  border-bottom: 1px solid rgb(75 85 99) !important;
+}
+
+::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: transparent !important;
+  color: rgb(156 163 175) !important;
+  border: none !important;
+  padding: 1rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: rgb(6 182 212) !important;
+  border-bottom: 2px solid rgb(6 182 212) !important;
+}
+
+::ng-deep .p-tabview .p-tabview-panels {
+  background: rgba(30, 41, 59, 0.4) !important;
+  color: white !important;
+  padding: 1.5rem !important;
+}
+
+/* Utility Classes for Consistent Spacing */
+.pc-builder-container {
+  @apply min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900;
+}
+
+.pc-builder-card {
+  @apply bg-slate-800/60 backdrop-blur-sm border border-gray-700 rounded-lg;
+}
+
+.pc-builder-card-hover {
+  @apply hover:border-cyan-500 transition-colors cursor-pointer;
+}
+
+.pc-builder-glass {
+  @apply bg-slate-800/80 backdrop-blur-sm border border-gray-700;
+}
+
+.pc-builder-gradient-bg {
+  @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900;
+}
+
+.pc-builder-animated-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+.pc-builder-animated-bg > div {
+  @apply absolute w-72 h-72 mix-blend-multiply filter blur-xl animate-pulse;
+}
+
+.pc-builder-animated-bg > div:nth-child(1) {
+  @apply top-20 left-10 bg-purple-500;
+}
+
+.pc-builder-animated-bg > div:nth-child(2) {
+  @apply top-40 right-10 bg-cyan-500;
+  animation-delay: 2s;
+}
+
+.pc-builder-animated-bg > div:nth-child(3) {
+  @apply -bottom-8 left-20 bg-pink-500;
+  animation-delay: 4s;
+}

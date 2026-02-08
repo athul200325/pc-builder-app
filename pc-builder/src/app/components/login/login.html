@@ -1,0 +1,112 @@
+<!-- Login Page -->
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-6">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 mix-blend-multiply filter blur-xl animate-pulse"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-cyan-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+  </div>
+
+  <!-- Login Container -->
+  <div class="relative z-10 bg-slate-800/80 backdrop-blur-sm border border-gray-700 w-full max-w-6xl flex overflow-hidden">
+    <!-- Left Section - Lottie Animation -->
+    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 items-center justify-center p-12">
+      <div class="text-center">
+        <div class="mb-8">
+          <dotlottie-player 
+            src="assets/images/lottie/Login.lottie" 
+            background="transparent" 
+            speed="1" 
+            style="width: 400px; height: 400px;" 
+            loop 
+            autoplay>
+          </dotlottie-player>
+        </div>
+        <h2 class="text-4xl font-bold text-white mb-4">Build Your Dream PC</h2>
+        <p class="text-xl text-gray-300">Professional PC building made simple with AI-powered compatibility validation</p>
+      </div>
+    </div>
+
+    <!-- Right Section - Login Form -->
+    <div class="w-full lg:w-1/2 p-8 lg:p-12">
+      <!-- Logo for mobile -->
+      <div class="lg:hidden text-center mb-8">
+        <div class="flex items-center justify-center space-x-2 mb-4">
+          <img src="assets/images/dreambuild-logo.png" alt="PC Builder Logo" class="w-12 h-12">
+          <span class="text-white text-3xl font-bold">Builder</span>
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto">
+        <h1 class="text-3xl font-bold text-white mb-2">Welcome Back</h1>
+        <p class="text-gray-400 mb-8">Sign in to your account</p>
+
+        <!-- Login Form -->
+        <form [formGroup]="loginForm" class="space-y-6">
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+            <input 
+              formControlName="email"
+              type="email" 
+              id="email" 
+              class="w-full px-4 py-3 bg-slate-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors"
+              placeholder="Enter your email"
+            >
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+            <input 
+              formControlName="password"
+              type="password" 
+              id="password" 
+              class="w-full px-4 py-3 bg-slate-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors"
+              placeholder="Enter your password"
+            >
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="flex items-center">
+              <input type="checkbox" class="w-4 h-4 text-cyan-500 bg-slate-700 border-gray-600 focus:ring-cyan-500">
+              <span class="ml-2 text-sm text-gray-300">Remember me</span>
+            </label>
+            <a href="#" class="text-sm text-cyan-400 hover:text-cyan-300 transition-colors">Forgot password?</a>
+          </div>
+
+          <button 
+            (click)="login()"
+            type="submit" 
+            class="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white py-3 font-semibold hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="mt-6 flex items-center">
+          <div class="flex-1 border-t border-gray-600"></div>
+          <span class="px-4 text-gray-400 text-sm">or</span>
+          <div class="flex-1 border-t border-gray-600"></div>
+        </div>
+
+        <!-- Social Login -->
+        <div class="mt-6 space-y-3">
+          <button class="w-full bg-slate-700 text-white py-3 border border-gray-600 hover:bg-slate-600 transition-colors flex items-center justify-center space-x-2">
+            <span>Continue with Google</span>
+          </button>
+          <button class="w-full bg-slate-700 text-white py-3 border border-gray-600 hover:bg-slate-600 transition-colors flex items-center justify-center space-x-2">
+            <span>Continue with GitHub</span>
+          </button>
+        </div>
+
+        <!-- Sign Up Link -->
+        <div class="mt-8 text-center">
+          <p class="text-gray-400">
+            Don't have an account? 
+            <a [routerLink]="['/register']" class="text-cyan-400 hover:text-cyan-300 transition-colors font-medium">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

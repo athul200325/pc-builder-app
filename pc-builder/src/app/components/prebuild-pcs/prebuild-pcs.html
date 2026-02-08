@@ -1,0 +1,143 @@
+<app-header></app-header>
+
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 mix-blend-multiply filter blur-xl animate-pulse"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-cyan-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+  </div>
+
+  <div class="relative z-10 p-8">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-white mb-4">Pre-Built Gaming PCs</h1>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Ready-to-ship gaming PCs built by experts. No assembly required, just plug and play!
+      </p>
+    </div>
+
+    <!-- Search & Filters -->
+    <div class="bg-slate-800/60 backdrop-blur-sm border border-gray-700 rounded-lg p-6 mb-8">
+      <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+        <div class="flex-1 max-w-md">
+          <input 
+            pInputText 
+            placeholder="Search pre-built PCs..." 
+            [(ngModel)]="searchTerm"
+            class="w-full">
+        </div>
+        <div class="flex gap-4 items-center">
+          <p-select 
+            [(ngModel)]="sortBy"
+            [options]="sortOptions"
+            placeholder="Sort by"
+            styleClass="min-w-40">
+          </p-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Count -->
+    <div class="mb-6">
+      <p class="text-gray-400">
+        Showing {{ filteredPcs.length }} pre-built PCs
+        <span *ngIf="selectedCategory"> in {{ selectedCategory }}</span>
+      </p>
+    </div>
+
+    <!-- Pre-Built PCs Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+      <p-card *ngFor="let pc of filteredPcs" class="relative">
+        <!-- Discount Badge -->
+        <div *ngIf="pc.originalPrice > pc.price" 
+             class="absolute top-4 right-4 z-10 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+          -{{ getDiscount(pc.price, pc.originalPrice) }}%
+        </div>
+
+        <ng-template pTemplate="header">
+          <img [src]="pc.image" [alt]="pc.name" class="w-full h-48 object-cover">
+        </ng-template>
+
+        <div class="space-y-4">
+          <!-- Title & Category -->
+          <div>
+            <h3 class="text-white font-bold text-lg mb-2">{{ pc.name }}</h3>
+            <p-tag [value]="pc.category" severity="info"></p-tag>
+          </div>
+
+          <!-- Rating & Reviews -->
+          <div class="flex items-center gap-2">
+            <p-rating [(ngModel)]="pc.rating" [readonly]="true"></p-rating>
+            <span class="text-gray-400 text-sm">({{ pc.reviews }} reviews)</span>
+          </div>
+
+          <!-- Specs -->
+          <div class="space-y-1">
+            <h4 class="text-white font-semibold text-sm">Key Specs:</h4>
+            <div *ngFor="let spec of pc.specs" class="text-gray-300 text-sm">
+              • {{ spec }}
+            </div>
+          </div>
+
+          <!-- Features -->
+          <div class="flex flex-wrap gap-1">
+            <p-tag *ngFor="let feature of pc.features" 
+                   [value]="feature" 
+                   severity="secondary"
+                   class="text-xs">
+            </p-tag>
+          </div>
+
+          <!-- Price & Stock -->
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl font-bold text-cyan-400">${{ pc.price }}</span>
+              <span *ngIf="pc.originalPrice > pc.price" 
+                    class="text-gray-500 line-through text-lg">${{ pc.originalPrice }}</span>
+            </div>
+            
+            <p-tag 
+              [value]="getStockText(pc.inStock)"
+              [severity]="getSeverity(pc.inStock)"
+              class="w-full text-center">
+            </p-tag>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex gap-2">
+            <p-button 
+              label="Add to Cart"
+              icon="pi pi-shopping-cart"
+              [disabled]="!pc.inStock"
+              styleClass="flex-1">
+            </p-button>
+            <p-button 
+              icon="pi pi-eye"
+              severity="secondary"
+              outlined="true">
+            </p-button>
+          </div>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredPcs.length === 0" class="text-center py-12">
+      <div class="text-6xl mb-4">🖥️</div>
+      <h3 class="text-xl font-semibold text-white mb-2">No pre-built PCs found</h3>
+      <p class="text-gray-400">Try adjusting your search or filter criteria</p>
+    </div>
+
+    <!-- Load More -->
+    <div *ngIf="filteredPcs.length > 0" class="text-center">
+      <p-button 
+        label="Load More PCs"
+        severity="secondary"
+        size="large">
+      </p-button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
