@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Header } from "../shared/header/header";
 import { Footer } from "../shared/footer/footer";
@@ -10,14 +10,34 @@ import { RatingModule } from 'primeng/rating';
 import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
+import { ApiService } from '../../services/api.service';
+import { ToastService } from '../../services/toast.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-homePage',
-  imports: [CommonModule, FormsModule, Header, Footer, ButtonModule, CardModule, TagModule, RatingModule, BadgeModule, InputTextModule, SelectModule],
+  imports: [CommonModule, FormsModule, Header, Footer, ButtonModule, CardModule, TagModule, RatingModule, BadgeModule, InputTextModule, SelectModule,],
   templateUrl: './homePage.html',
   styleUrl: './homePage.css',
 })
 export class homePage {
+
+  UserId = 0;
+
+  constructor(
+    private apiService: ApiService,
+    private toast: ToastService,
+    private userService: UserService
+  ) {
+    this.userdata = this.userService.user;
+    
+    effect(() => {
+      console.log('User data changed:', this.userdata());
+    });
+  }
+
+  userdata: any = null;
+
   categories = [
     { name: 'Processors (CPU)', icon: '⚡', count: 156 },
     { name: 'Graphics Cards (GPU)', icon: '🎮', count: 89 },
@@ -71,4 +91,8 @@ export class homePage {
       inStock: true
     }
   ];
+
+  ngOnInit() {
+    console.log('User data:', this.userdata());
+  }
 }

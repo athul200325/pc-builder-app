@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { Form, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,6 +8,11 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
+import { UserService } from '../../services/user.service';
+import { switchMap } from 'rxjs';
+import { TokenService } from '../../services/token.service';
+
 
 @Component({
   selector: 'app-login',
@@ -21,7 +26,11 @@ export class Login {
   
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private toast: ToastService,
+    private router: Router,
+    private userService: UserService,
+    private tokenService: TokenService
 
   ) {
     this.loginForm = this.fb.group({
@@ -36,14 +45,23 @@ export class Login {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
       if (email && password) {
-        this.authService.login(email, password).subscribe({
-          next: (res) => {
-            console.log('Login successful:', res);
-            // Handle successful login, e.g., navigate to dashboard or store token
+        this.authService.login(email, password).pipe(
+          switchMap((res: any) => {
+            if (res.token) {
+              this.tokenService.setToken(res.token);
+              localStorage.setItem('userId', res.userId);
+              return this.userService.getUserById(res.userId);
+            }
+            throw new Error('No token received');
+          })
+        ).subscribe({
+          next: (userData) => {
+            // this.userService.setUser(userData.data);
+            this.toast.showToast('Login successful');
+            this.router.navigate(['/']);
           },
           error: (error) => {
-            console.error('Login failed:', error);
-            // Handle login error, e.g., show error message to user
+            this.toast.showError('Login failed. Please check your credentials and try again.');
           }
         });
       }
