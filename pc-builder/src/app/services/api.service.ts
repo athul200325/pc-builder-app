@@ -9,8 +9,13 @@ export class ApiService {
 
   private baseUrl = 'http://localhost:3000';
 
-  getUser() {
-    return this.http.get('/api/user');
+  getUserById(userId: number) {
+    try {
+      return this.http.get(`${this.baseUrl}/api/users/getUser/${userId}`);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      throw error;
+    }
   }
 
 }
