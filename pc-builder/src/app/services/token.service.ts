@@ -25,7 +25,7 @@ export class TokenService {
   isTokenExpired(): boolean {
     const token = this.getToken();
     if (!token) {
-      this.toastService.showError('No token found, please log in again');
+      this.toastService.showError('Authentication failed, please log in again');
       return true;
     }
 

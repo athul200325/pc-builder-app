@@ -1,0 +1,14 @@
+::ng-deep .p-button .p-button-label {
+  font-weight: bold;
+}
+
+::ng-deep .logout-btn {
+  color: white;
+  background: #d42323 !important;
+  border: none !important;
+}
+
+::ng-deep .logout-btn:hover {
+  color: white !important;
+  background: #880a0a !important;
+}

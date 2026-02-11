@@ -8,6 +8,10 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { Header } from '../shared/header/header';
 import { Footer } from '../shared/footer/footer';
+import { UserService } from '../../services/user.service';
+import { UserProfileDialog } from './user-profile-dialog/user-profile-dialog';
+import { TokenService } from '../../services/token.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,20 +25,25 @@ import { Footer } from '../shared/footer/footer';
     TableModule,
     TagModule,
     Header,
-    Footer
+    Footer,
+    UserProfileDialog
   ],
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.css',
 })
 export class UserProfile {
-  userProfile = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+1 (555) 123-4567',
-    memberSince: 'January 2023',
-    totalOrders: 12,
-    totalSpent: 3450,
-    pcBuilds: [
+  userData;
+  visible = false;
+
+  constructor(
+    private tokenService: TokenService,
+    private userService: UserService,
+    private router: Router
+  ) {
+    this.userData = this.userService.user;
+  }
+
+  pcBuilds = [
       {
         name: 'Gaming Beast',
         status: 'Complete',
@@ -95,13 +104,17 @@ export class UserProfile {
         },
         totalPrice: 4299
       }
-    ],
-    recentOrders: [
-      { id: 'ORD-001', date: '2024-01-25', items: 3, total: 450, status: 'Delivered' },
-      { id: 'ORD-002', date: '2024-01-20', items: 1, total: 299, status: 'Shipped' },
-      { id: 'ORD-003', date: '2024-01-15', items: 5, total: 1200, status: 'Processing' }
     ]
-  };
+
+  recentOrders = [
+    { id: 'ORD-001', date: '2024-01-25', items: 3, total: 450, status: 'Delivered' },
+    { id: 'ORD-002', date: '2024-01-20', items: 1, total: 299, status: 'Shipped' },
+    { id: 'ORD-003', date: '2024-01-15', items: 5, total: 1200, status: 'Processing' }
+  ]
+
+  ngOnInit() {
+    console.log('User data loaded:', this.userData());
+  }
 
   getOrderStatusSeverity(status: string): 'success' | 'info' | 'warn' | 'danger' | 'secondary' | 'contrast' {
     switch (status) {
@@ -126,6 +139,24 @@ export class UserProfile {
         behavior: 'smooth'
       });
     }
+  }
+
+  getProfilePic() {
+    if (this.userData() && this.userData().profilePic) {
+      return this.userData().profilePic;
+    }
+    return 'https://cdn.vectorstock.com/i/preview-1x/63/42/avatar-photo-placeholder-icon-design-vector-30916342.jpg';
+  }
+
+  editProfile() {
+    this.visible = true;
+  }
+
+  logOut() {
+    this.tokenService.removeToken();
+    localStorage.removeItem('userId');
+    this.userService.clearUser();
+    this.router.navigate(['/login']);
   }
 }
 

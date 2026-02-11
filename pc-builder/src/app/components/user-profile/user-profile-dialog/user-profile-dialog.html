@@ -1,0 +1,30 @@
+<p-dialog header="Edit Profile" [(visible)]="visible" [modal]="true" [style]="{width: '500px'}">
+  <!-- <div class="space-y-4"> -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+      <input pInputText [value]="editData.name" class="w-full" />
+    </div>
+    
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+      <input pInputText [value]="editData.email" type="email" class="w-full" />
+    </div>
+    
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+      <input pInputText [value]="editData.phone" class="w-full" />
+    </div>
+    
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-300 mb-2">Member Since</label>
+      <input pInputText [value]="editData.memberSince" class="w-full" readonly />
+    </div>
+  <!-- </div> -->
+  
+  <ng-template pTemplate="footer">
+    <div class="flex gap-2 justify-end">
+      <p-button label="Cancel" severity="secondary" (onClick)="onHide()"></p-button>
+      <p-button label="Save Changes" (onClick)="onSave()"></p-button>
+    </div>
+  </ng-template>
+</p-dialog>

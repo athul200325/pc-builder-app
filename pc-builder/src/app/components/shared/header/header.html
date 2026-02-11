@@ -22,16 +22,16 @@
           styleClass="relative">
         </p-button>
         
-        @if(!userdata()) {
+        @if(!userData()) {
           <button (click)="navigateToLogin()" class="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-2 hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 rounded cursor-pointer" style="pointer-events: auto; z-index: 1000;">
             Login
           </button>
         }
 
-        @if(userdata()) {
+        @if(userData()) {
           <div class="flex items-center space-x-3">
             <img [routerLink]="['/profile']" [src]="getProfilePic()" alt="Profile" class="w-10 h-10 rounded-full border-2 border-cyan-500">
-            <span class="text-white font-medium">{{ userdata().name }}</span>
+            <span class="text-white font-medium">{{ userData().name }}</span>
           </div>
         }
       </div>

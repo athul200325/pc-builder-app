@@ -14,18 +14,18 @@ import { UserService } from '../../../services/user.service';
 })
 export class Header {
   cartItemCount = 3;
-  userdata;
+  userData;
 
   constructor(
     private router: Router,
     private userService: UserService
   ) {
-    this.userdata = this.userService.user;
+    this.userData = this.userService.user;
   }
 
   getProfilePic() {
-    if (this.userdata() && this.userdata().profilePic) {
-      return this.userdata().profilePic;
+    if (this.userData() && this.userData().profilePic) {
+      return this.userData().profilePic;
     }
     return 'https://cdn.vectorstock.com/i/preview-1x/63/42/avatar-photo-placeholder-icon-design-vector-30916342.jpg';
   }

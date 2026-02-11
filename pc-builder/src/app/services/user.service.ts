@@ -37,7 +37,7 @@ export class UserService {
   }
 
   setUser(userData: any) {
-    this.user.set(userData.data[0]);
+    this.user.set(userData[0]);
   }
 
   clearUser() {

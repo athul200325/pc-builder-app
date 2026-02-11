@@ -56,7 +56,7 @@ export class Login {
           })
         ).subscribe({
           next: (userData) => {
-            // this.userService.setUser(userData.data);
+            this.userService.setUser(userData.data);
             this.toast.showToast('Login successful');
             this.router.navigate(['/']);
           },
